@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Day 1</title>
+    <style>
+      /* #4446a3 , #4dbbc7 */
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      .Content_Box {
+        position: absolute;
+        width: 380px;
+        min-width: 300px;
+        height: 400px;
+        min-height: 400px;
+        background: linear-gradient(to top right, #4446a3, #4dbbc7);
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+        text-align: center;
+        border-radius: 4px;
+      }
+
+      .one,
+      .number {
+        display: flex;
+      }
+
+      .number {
+        justify-content: center;
+      }
+      .one_top {
+        width: 22px;
+        height: 52px;
+        background-color: white;
+        transform: rotate(45deg);
+        position: relative;
+        left: 5px;
+        top: -0.8px;
+        border-radius: 4px;
+        box-shadow: inset 0px 0px 2px rgba(0, 0, 0, 0.259);
+      }
+      .one_line {
+        width: 28px;
+        height: 120px;
+        background-color: #fff;
+        border-radius: 4px;
+        z-index: 2;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.233);
+      }
+      .zero {
+        position: relative;
+        width: 120px;
+        height: 120px;
+        border: 30px solid whitesmoke;
+        border-radius: 50%;
+      }
+      .zero_one {
+        left: -7px;
+        z-index: 1;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.252);
+      }
+      .zero_two {
+        left: -25px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.152);
+
+      }
+
+      h1 {
+        font-family: 'Courier New', Courier, monospace;
+        font-weight: 900;
+        font-style: normal;
+        color: #fff;
+        text-transform: uppercase;
+        font-size: 7em;
+      }
+      h2{
+        position: relative;
+        font-family: 'Courier New', Courier, monospace;
+        font-weight: 900;
+        font-style: normal;
+        color: #fff;
+        text-transform: uppercase;
+        font-size: 2.09em;
+        top:-25px;
+      }
+@media (max-width: 768px) {
+  h1 {
+position: relative;
+    font-size: 6.1rem;
+    top:-25px;
+
+  }
+  h2 {
+    position: relative;
+    font-size: 1.8rem;
+    top:-48px;
+
+  }
+  .number,h1,h2{
+    transform: scale(0.8);
+  }
+}
+
+@media (max-width: 480px) {
+    .Content_Box{
+        width: 280px;
+    }
+  h1 {
+    position: relative;
+    font-size: 4.8rem;
+    top:-30px;
+  }
+  h2 {
+    position: relative;
+    font-size: 1.45rem;
+    top:-48px;
+  }
+  .number {
+    transform: scale(0.6);
+  }
+ 
+}
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="Content_Box">
+        <div class="number">
+          <div class="one">
+            <div class="one_top"></div>
+            <div class="one_line"></div>
+          </div>
+          <div class="zero zero_one"></div>
+          <div class="zero zero_two"></div>
+        </div>
+        <h1>Days</h1>
+        <h2>Css Challenge</h2>
+      </div>
+    </main>
+  </body>
+</html>
