@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Day 2</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      .containerBox {
+        position: absolute;
+        width: 350px;
+        height: 350px;
+        background-color: #3faf82;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 4px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      .lines {
+        width: 80px;
+        height: 8px;
+        border-radius: 4px;
+        background-color: white;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.284);
+      }
+      
+      #toggle {
+        height: fit-content;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        cursor: pointer;
+      }
+
+      /* close */
+      .animation .one {
+        animation: close-one 0.5s ease forwards;
+      }
+      .animation .two {
+        animation: close 0.5s ease forwards;
+      }
+      .animation .three {
+        animation: close-three 0.5s ease forwards;
+      }
+
+      @keyframes close-one {
+        0% {
+          transform: translateY(0) rotate(0deg);
+        }
+        50% {
+          transform: translateY( 20px) rotate(0deg);
+        }
+        100% {
+          transform: translateY(20px) rotate(45deg);
+        }
+      }
+      @keyframes close-three {
+        0% {
+          transform: translateY(0) rotate(0deg);
+        }
+        50% {
+          transform: translateY( -20px) rotate(0deg);
+        }
+        100% {
+          transform: translateY(-20px) rotate(-45deg);
+        }
+      }
+      @keyframes close {
+        0% {
+          transform: scale(1);
+          opacity: 1;
+        }
+        100% {
+          transform: scale(0);
+          opacity: 0;
+        }
+      }
+
+      /* open */
+       .one {
+        animation: open-one 0.3s ease forwards;
+      }
+       .two {
+        animation: open-two 0.3s ease forwards;
+      }
+       .three {
+        animation: open-three 0.3s ease forwards;
+      }
+
+      @keyframes open-one {
+        0% {
+            transform: translateY(20px) rotate(-45deg);
+        }
+        50% {
+          transform: translateY(20px) rotate(0deg);
+        }
+        100% {
+            transform: translateY(0) rotate(0deg);
+        }
+      } 
+      @keyframes open-three {
+        0% {          
+            transform: translateY(-20px) rotate(45deg);
+
+        }
+        50% {
+          transform: translateY( -20px) rotate(0deg);
+        }
+        100% {
+            transform: translateY(0) rotate(0deg);
+
+        }
+      }
+      @keyframes open-two {
+        0% {
+          transform: scale(0);
+          opacity: 0;
+        }
+        100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="containerBox">
+        <div id="toggle">
+          <div class="lines one"></div>
+          <div class="lines two"></div>
+          <div class="lines three"></div>
+        </div>
+      </div>
+    </main>
+
+    <script>
+      let toggle = document.getElementById("toggle");
+      toggle.addEventListener("click", function(){
+           this.classList.toggle("animation");
+      });
+    </script>
+  </body>
+</html>
