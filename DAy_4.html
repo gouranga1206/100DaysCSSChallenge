@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Day 4</title>
+    <style>
+      .contentBox {
+        position: absolute;
+        width: 350px;
+        height: 350px;
+        background-color: #e56262;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 4px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .plateContent {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .plateContent div {
+        position: absolute;
+        box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.281);
+        background-color: whitesmoke;
+      }
+      .one {
+        z-index: 3;
+        width: 40px;
+        height: 40px;
+        background: #fff;
+        border-radius: 50%;
+        animation-fill-mode: both;
+        animation: zooming-one 2s cubic-bezier(0.65, 0.05, 0.36, 1) alternate
+          infinite;
+      }
+      .two {
+        z-index: 2;
+        width: 80px;
+        height: 80px;
+        background: #fff;
+        border-radius: 50%;
+        animation: zooming-two 2s cubic-bezier(0.65, 0.05, 0.36, 1) alternate
+          infinite;
+        animation-fill-mode: both;
+      }
+      .three {
+        z-index: 1;
+        width: 120px;
+        height: 120px;
+        background: #fff;
+        border-radius: 50%;
+        animation: zooming-three 2s cubic-bezier(0.65, 0.05, 0.36, 1) alternate
+          infinite;
+        animation-fill-mode: both;
+      }
+
+      @keyframes zooming-one {
+        0%,
+        70% {
+          box-shadow: 2px 2px 3px 2px rgba(0, 0, 0, 0.2);
+          transform: scale(0);
+        }
+
+        100% {
+          box-shadow: 10px 10px 15px 0 rgba(0, 0, 0, 0.3);
+          transform: scale(1);
+        }
+      }
+
+      @keyframes zooming-two {
+        0%,
+        40% {
+          box-shadow: 2px 2px 3px 2px rgba(0, 0, 0, 0.2);
+          transform: scale(0);
+        }
+
+        100% {
+          box-shadow: 10px 10px 15px 0 rgba(0, 0, 0, 0.3);
+          transform: scale(1);
+        }
+      }
+
+      @keyframes zooming-three {
+        0%,
+        10% {
+          box-shadow: 2px 2px 3px 2px rgba(0, 0, 0, 0.2);
+          transform: scale(0);
+        }
+
+        100% {
+          box-shadow: 10px 10px 15px 0 rgba(0, 0, 0, 0.3);
+          transform: scale(1);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="contentBox">
+        <div class="plateContent">
+          <div class="one"></div>
+          <div class="two"></div>
+          <div class="three"></div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
