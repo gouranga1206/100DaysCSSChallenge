@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Day 3</title>
+    <style>
+      /* #272c34, #77d2ed, #f0de75, #FFEF00 */
+      .contentBox {
+        width: 350px;
+        height: 400px;
+        background-color: #272c34;
+        border-radius: 4px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+      .centerCircle {
+        position: relative;
+        width: 180px;
+        height: 180px;
+        background-color: #77d2ed;
+        border-radius: 50%;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        overflow: hidden;
+        animation: skyFade 4s cubic-bezier(0.4, 0, 0.49, 1) infinite;
+      }
+      .ground {
+        position: relative;
+        width: 100%;
+        height: 40%;
+        top: 65%;
+        border-top: 1px solid rgba(0, 0, 0, 0.214);
+        animation: groundFade 4s cubic-bezier(0.4, 0, 0.49, 1) infinite;
+      }
+
+      /* Pyramid */
+      .pyramid {
+        position: absolute;
+        width: auto;
+        height: auto;
+        top: 40.9%;
+        left: 22%;
+        display: flex;
+      }
+      .pyramid div {
+        width: 75px;
+        height: 44px;
+      }
+      .side-left {
+        clip-path: polygon(0% 100%, 90% 100%, 65% 0%);
+        background-color: #f4f4f4;
+        animation: pyramidShading-left 4s cubic-bezier(0.4, 0, 0.49, 1) infinite;
+      }
+
+      .side-right {
+        position: relative;
+        left: -26.5px;
+        clip-path: polygon(25% 102%, 63% 100%, 0% 0%);
+        background-color: #dddada;
+        animation: pyramidShading-right 4s cubic-bezier(0.4, 0, 0.49, 1)
+          infinite;
+      }
+
+      /* Sun */
+      .sun {
+        position: absolute;
+        z-index: 2;
+        top: 7px;
+        left: 73px;
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        background: #ffef00;
+        transform-origin: 50% 400%;
+        animation: movingSun 4s cubic-bezier(0.4, 0, 0.49, 1) infinite;
+      }
+
+      .shadow {
+        position: absolute;
+        z-index: 2;
+        top: 117px;
+        left: -75px;
+        height: 26px;
+        width: 306px;
+        background: rgba(0, 0, 0, 0.2);
+        transform-origin: 50% 0%;
+        clip-path: polygon(115px 0%, 210px 0%, 72% 100%);
+        animation: shadow 4s cubic-bezier(0.4, 0, 0.49, 1) infinite;
+      }
+      /* Sun animation */
+      @keyframes movingSun {
+        0% {
+          background: #f57209;
+          transform: rotate(-70deg);
+        }
+        30% {
+          background: #ffef00;
+          transform: rotate(-28deg);
+        }
+        70% {
+          background: #ffef00;
+        }
+        100% {
+          background: #f57209;
+          transform: rotate(70deg);
+        }
+      }
+
+      /* Ground animation */
+      @keyframes groundFade {
+        0% {
+          background-color: #272c34;
+          border-top: 1px solid rgba(0, 0, 0, 0.214);
+        }
+        30% {
+          background-color: #f0de75;
+          border-top: 1px solid rgba(0, 0, 0, 0.214);
+        }
+        60% {
+          background-color: #f0de75;
+          border-top: 1px solid rgba(0, 0, 0, 0.118);
+        }
+        100% {
+          background-color: #272c34;
+          border-top: 1px solid rgba(0, 0, 0, 0);
+        }
+      }
+
+      /* pyramidShading animation */
+      @keyframes pyramidShading-left {
+        0% {
+          background-color: #272c34;
+        }
+        30% {
+          background-color: #f4f4f4;
+        }
+        70% {
+          background-color: #dddada;
+        }
+        100% {
+          background-color: #272c34;
+        }
+      }
+      /* pyramidShading animation */
+      @keyframes pyramidShading-right {
+        0% {
+          background-color: #272c34;
+        }
+        30% {
+          background-color: #dddada;
+        }
+        70% {
+          background-color: #f4f4f4;
+        }
+        100% {
+          background-color: #272c34;
+        }
+      }
+      @keyframes shadow {
+        0% {
+          transform: scaleY(0);
+          clip-path: polygon(115px 0%, 210px 0%, 72% 100%);
+        }
+
+        30% {
+          transform: scaleY(1);
+          clip-path: polygon(115px 0%, 210px 0%, 62% 100%);
+        }
+
+        55% {
+          transform: scaleY(0.4);
+        }
+
+        75% {
+          transform: scaleY(1);
+        }
+
+        100% {
+          transform: scaleY(0);
+          clip-path: polygon(115px 0%, 210px 0%, 0% 100%);
+        }
+      }
+      /* Sky animation */
+      @keyframes skyFade {
+        0% {
+          background-color: #77d2ed;
+        }
+        30%{
+            background-color: #77d2ed;
+        }
+        60% {
+          background-color: #77d2ed;
+        }
+        70% {
+          background-color: #77d2ed;
+        }
+        100% {
+          background-color: #272c3400;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="contentBox">
+        <div class="centerCircle">
+          <div class="sun"></div>
+          <div class="pyramid">
+            <div class="side-left"></div>
+            <div class="side-right"></div>
+          </div>
+          <div class="shadow"></div>
+          <div class="ground"></div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
