@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Day 5</title>
+    <style>
+      main {
+        font-family: sans-serif;
+      }
+      .contentBox {
+        width: 350px;
+        height: 350px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #42a7a1;
+        border-radius: 4px;
+      }
+      .report {
+        width: 280px;
+        height: 230px;
+        background-color: whitesmoke;
+        border-radius: 4px;
+        box-shadow: 4px 2px 12px rgba(0, 0, 0, 0.423);
+      }
+      .reportStatus {
+        width: 100%;
+        height: 25%;
+        background-color: #f1ba64;
+        color: white;
+        display: flex;
+        justify-content: space-around;
+        line-height: 3px;
+        gap: 5vw;
+        font-size: 0.9rem;
+      }
+      .reportStatus span:first-of-type p:nth-child(2) {
+        font-size: 0.7rem;
+      }
+      .reportStatus span:nth-of-type(2) p:nth-child(1) {
+        font-size: 0.78rem;
+        text-align: right;
+      }
+      .barStatus {
+        display: flex;
+        font-size: 0.53rem;
+        gap: 10px;
+        float: right;
+        padding: 0 10px;
+      }
+      .barStatus p span {
+        width: 13px;
+        height: 3px;
+        border-radius: 2px;
+        display: inline-block;
+      }
+      .barStatus p:first-of-type span {
+        background-color: rgb(248, 82, 82);
+      }
+      .barStatus p:nth-child(2) span {
+        background-color: rgb(87, 195, 238);
+      }
+      #hr {
+        position: relative;
+        width: 90%;
+        height: 0.5px;
+        display: inline-block;
+        background-color: rgba(0, 0, 0, 0.158);
+        border-radius: 2px;
+        left: 5%;
+      }
+      span#hr:nth-of-type(3) {
+        top: 26%;
+      }
+      span#hr:nth-of-type(2) {
+        top: 13%;
+      }
+      .weedays {
+        width: 100%;
+        height: fit-content;
+        display: flex;
+        font-size: 0.7rem;
+        justify-content: space-around;
+        color: rgba(0, 0, 0, 0.351);
+        position: relative;
+        top: -12%;
+      }
+      svg {
+        position: relative;
+        width: 90%;
+        height: auto;
+        margin: -37% 0 5% 5%;
+      }
+
+      .points {
+        position: absolute;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        z-index: 1;
+        background-color: red;
+        display: inline-block;
+        cursor: pointer;
+      }
+
+      .red .points:nth-child(1) {
+        top: 62%;
+        left: 13%;
+      }
+
+      .red .points:nth-child(2) {
+        top: 55%;
+        left: 20%;
+      }
+
+      .red .points:nth-child(3) {
+        top: 55.5%;
+        left: 30%;
+      }
+
+      .red .points:nth-child(4) {
+        top: 50%;
+        left: 45%;
+      }
+
+      .red .points:nth-child(5) {
+        top: 58.5%;
+        left: 70.5%;
+      }
+
+      .red .points:nth-child(6) {
+        top: 48%;
+        left: 81%;
+      }
+
+      .blue .points:nth-child(1) {
+        top: 66.5%;
+        background-color: rgb(87, 195, 255) !important;
+        left: 13.5%;
+      }
+
+      .blue .points:nth-child(2) {
+        top: 60%;
+        background-color: rgb(87, 191, 255) !important;
+        left: 24%;
+      }
+
+      .blue .points:nth-child(3) {
+        top: 64%;
+        background-color: rgb(87, 195, 255) !important;
+        left: 35%;
+      }
+
+      .blue .points:nth-child(4) {
+        top: 58.5%;
+        background-color: rgb(87, 195, 255) !important;
+        left: 44.5%;
+      }
+
+      .blue .points:nth-child(5) {
+        top: 59%;
+        background-color: rgb(87, 195, 255) !important;
+        left: 56%;
+      }
+
+      .blue .points:nth-child(6) {
+        top: 63.8%;
+        background-color: rgb(87, 195, 255) !important;
+        left: 70%;
+      }
+      .blue .points:nth-child(7) {
+        top: 58%;
+        background-color: rgb(87, 195, 255) !important;
+        left: 82%;
+      }
+
+/* Default tooltip styling */
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 5px; /* Adjusted to fit content */
+    height: 5px; /* Adjusted to keep it circular */
+    color: #fff;
+    border-radius: 50%; /* Rounded corners */
+    padding: 10px;
+    position: absolute;
+    z-index: 1;
+    font-size: 0.7rem;
+    bottom: 250%; /* Position above the element */
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    display: flex;
+    align-items: center; /* Vertically center the text */
+    justify-content: center; /* Horizontally center the text */
+    text-align: center;
+}
+
+/* Arrow styling */
+.tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 95%; /* Arrow points downwards from the bottom of the tooltip */
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: inherit transparent transparent transparent; /* Arrow inherits the background color */
+}
+
+/* Tooltip hover effect */
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Tooltip background color for .red */
+.red .tooltip .tooltiptext {
+    background-color: rgb(239, 88, 88);
+}
+
+/* Tooltip background color for .blue */
+.blue .tooltip .tooltiptext {
+    background-color: rgb(87, 195, 255) !important;
+}
+
+/* Arrow color for .red */
+.red .tooltip .tooltiptext::after {
+    border-color: rgb(239, 88, 88) transparent transparent transparent;
+}
+
+/* Arrow color for .blue */
+.blue .tooltip .tooltiptext::after {
+    border-color: rgb(87, 195, 255) transparent transparent transparent;
+}
+
+      
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="contentBox">
+        <div class="report">
+          <div class="reportStatus">
+            <span>
+              <p><b>Weekly Report</b></p>
+              <p>01.Feb-07.Feb</p>
+            </span>
+            <span>
+              <p>Revenue</p>
+              <p><b>$3621.74</b></p>
+            </span>
+          </div>
+          <div class="barStatus">
+            <p><span></span> Views</p>
+            <p><span></span> Purchases</p>
+          </div>
+          <span id="hr"></span><span id="hr"></span><span id="hr"></span>
+          <div class="red">
+            <div class="points tooltip"><span class="tooltiptext">458</span></div>
+            <div class="points tooltip"><span class="tooltiptext">612</span></div>
+            <div class="points tooltip"><span class="tooltiptext">610</span></div>
+            <div class="points tooltip"><span class="tooltiptext">731</span></div>
+            <div class="points tooltip"><span class="tooltiptext">510</span></div>
+            <div class="points tooltip"><span class="tooltiptext">820</span></div>
+
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              version="1.1"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+              xmlns:svgjs="http://svgjs.dev/svgjs"
+              viewBox="0 0 800 400"
+            >
+              <path
+                d="M3.4050068855285645,394.6236572265625C3.4050068855285645,394.6236572265625,77.77776336669922,314.8745422363281,77.77776336669922,314.8745422363281C77.77776336669922,314.8745422363281,188.8888702392578,324.7311706542969,188.8888702392578,324.7311706542969C188.8888702392578,324.7311706542969,351.9713134765625,261.1111145019531,351.9713134765625,261.1111145019531C351.9713134765625,261.1111145019531,501.6128845214844,313.9784851074219,501.6128845214844,313.9784851074219C501.6128845214844,313.9784851074219,637.8135986328125,360.573486328125,637.8135986328125,360.573486328125C637.8135986328125,360.573486328125,752.5089721679688,234.22938537597656,752.5089721679688,234.22938537597656"
+                fill="none"
+                stroke-width="3"
+                stroke="hsl(14, 87%, 51%)"
+                stroke-linecap="round"
+                stroke-dasharray="0 0"
+              ></path>
+              <defs>
+                <linearGradient id="SvgjsLinearGradient1000">
+                  <stop stop-color="hsl(37, 99%, 67%)" offset="0"></stop>
+                  <stop stop-color="hsl(316, 73%, 52%)" offset="1"></stop>
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+          <div class="blue">
+            <div class="points tooltip">
+              <span class="tooltiptext">310</span>
+            </div>
+            <div class="points tooltip">
+              <span class="tooltiptext">520</span>
+            </div>
+            <div class="points tooltip">
+              <span class="tooltiptext">435</span>
+            </div>
+            <div class="points tooltip">
+              <span class="tooltiptext">490</span>
+            </div>
+            <div class="points tooltip">
+              <span class="tooltiptext">486</span>
+            </div>
+            <div class="points tooltip">
+              <span class="tooltiptext">448</span>
+            </div>
+            <div class="points tooltip">
+              <span class="tooltiptext">509</span>
+            </div>
+
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              version="1.1"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+              xmlns:svgjs="http://svgjs.dev/svgjs"
+              viewBox="0 0 800 400"
+            >
+              <path
+                d="M6.093179225921631,312.0071716308594C6.093179225921631,312.0071716308594,121.68457794189453,239.42652893066406,121.68457794189453,239.42652893066406C121.68457794189453,239.42652893066406,241.75625610351562,291.3978576660156,241.75625610351562,291.3978576660156C241.75625610351562,291.3978576660156,346.594970703125,225.089599609375,346.594970703125,225.089599609375C346.594970703125,225.089599609375,476.5232849121094,231.3620147705078,476.5232849121094,231.3620147705078C476.5232849121094,231.3620147705078,628.85302734375,286.0215148925781,628.85302734375,286.0215148925781C628.85302734375,286.0215148925781,767.741943359375,223.2974853515625,767.741943359375,223.2974853515625"
+                fill="none"
+                stroke-width="3"
+                stroke="hsl(202, 85%, 52%)"
+                stroke-linecap="round"
+              ></path>
+              <defs>
+                <linearGradient id="SvgjsLinearGradient1001">
+                  <stop stop-color="hsl(37, 99%, 67%)" offset="0"></stop>
+                  <stop stop-color="hsl(316, 73%, 52%)" offset="1"></stop>
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+          <div class="weedays">
+            <p>Mon</p>
+            <p>Tue</p>
+            <p>Wed</p>
+            <p>Thu</p>
+            <p>Fri</p>
+            <p>Sat</p>
+            <p>Sun</p>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
