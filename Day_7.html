@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Day 7</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+
+    <style>
+      :root {
+        --box-color: #264057;
+        --nav-color: #5f98cd;
+        --darkFont-color: rgb(100, 97, 97);
+        --lightFont-color: rgba(123, 120, 120, 0.758);
+        --box-shadow: 4px 2px 10px rgba(0, 0, 0, 0.575);
+        --border-radius: 4px;
+        --svg-color: #b3d6f7;
+        --hidden-nav: #43627d;
+      }
+
+      .ContentBox {
+        position: absolute;
+        width: 380px;
+        height: 380px;
+        background-color: var(--box-color);
+        box-shadow: var(--box-shadow);
+        border-radius: var(--border-radius);
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        overflow: hidden;
+      }
+      .displayBlock {
+        position: absolute;
+        width: 300px;
+        height: fit-content;
+        background-color: whitesmoke;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: var(--border-radius);
+        box-shadow: var(--box-shadow);
+        display: flex;
+        flex-direction: column;
+      }
+      .Animate_1 {
+        animation: slideRight 0.6s ease-in-out forwards;
+      }
+      .navigation {
+        width: 100%;
+        height: 25%;
+        background-color: var(--nav-color);
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        z-index: 1;
+      }
+      .toggle {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        border-radius: var(--border-radius);
+        cursor: pointer;
+      }
+      .toggle span {
+        width: 35px;
+        height: 4px;
+        background-color: var(--svg-color);
+        border-radius: var(--border-radius);
+      }
+      .toggle span:first-of-type::after {
+        content: "";
+        width: 8px;
+        height: 8px;
+        background-color: var(--svg-color);
+        display: block;
+        position: relative;
+        left: 20px;
+        border-radius: 50%;
+      }
+      .toggle span:first-of-type {
+        width: 28px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .search {
+        color: var(--svg-color);
+        font-weight: bold;
+        cursor: pointer;
+      }
+      .navigation > p {
+        color: white;
+        font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+          sans-serif;
+        font-weight: 800;
+        letter-spacing: 0.4px;
+        font-size: 1.2rem;
+      }
+
+      .hiddenNav {
+        width: 150px;
+        height: 250px;
+        position: absolute;
+        background-color: var(--hidden-nav);
+        box-shadow: var(--box-shadow);
+        display: grid;
+        gap: 0;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: -1;
+        left: 115px;
+        transition: all 5s ease;
+      }
+      .Animate_2 {
+        animation: visible 0.6s ease-in-out forwards;
+      }
+      .hiddenNav.out {
+        animation: visibleOut 0.6s ease-in-out forwards;
+      }
+
+      .hiddenNav > p {
+        position: relative;
+        color: #92a8bd;
+        font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+          sans-serif;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        height: 100%;
+        margin: 0;
+        padding-left: 10px;
+        transition: all 0.4s ease;
+      }
+      .hiddenNav p span {
+        font-size: 1.2rem;
+      }
+      .hiddenNav p:hover {
+        background-color: #264057;
+        color: whitesmoke;
+      }
+      .toggle:hover span {
+        background-color: whitesmoke;
+      }
+      .search:hover {
+        color: whitesmoke;
+      }
+
+      @keyframes visible {
+        0%,
+        80% {
+        }
+        100% {
+          transform: translate(-50%, -50%) translateX(-20px);
+        }
+      }
+      @keyframes slideRight {
+        0%,
+        80% {
+        }
+        100% {
+          transform: translate(-50%, -50%) translateX(120px);
+        }
+      }
+
+      .outDisplay {
+        animation: displayOut 0.5s ease-out forwards;
+      }
+      @keyframes displayOut {
+        0% {
+          transform: translate(-50%, -50%) translateX(120px);
+        }
+        100% {
+          transform: translate(-50%, -50%) translateX(0px);
+        }
+      }
+
+      .outNav {
+        animation: visibleOut 0.5s ease-out forwards;
+      }
+      @keyframes visibleOut {
+        0% {
+          transform: translate(-50%, -50%) translateX(-20px);
+        }
+        100% {
+          transform: translate(-50%, -50%) translateX(0px);
+        }
+      }
+
+      @keyframes fadeUp {
+        0%,
+        20% {
+          opacity: 0;
+          transform: translateY(40px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0px);
+        }
+      }
+
+      .textMessage {
+        width: 70%;
+        height: 15%;
+        padding: 5% 10% 5% 20%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        animation: fadeUp 0.6s ease-in forwards;
+      }
+      .textMessage :is(.time, .text) {
+        position: relative;
+        all: unset;
+        font-size: 0.6rem;
+        font-family: Arial, Helvetica, sans-serif;
+        color: var(--darkFont-color);
+        margin: 3px;
+      }
+      .textMessage .text {
+        font-size: 0.9rem !important;
+        transition: all 0.3s ease;
+      }
+      .textMessage:hover :is(.text, .time) {
+        color: var(--nav-color);
+        cursor: pointer;
+      }
+
+      .textMessage .time::after {
+        content: "";
+        display: block;
+        width: 6px;
+        height: 6px;
+        position: absolute;
+        border-radius: 50%;
+        left: 30px;
+        margin-top: -11.5px;
+        border: 2px solid var(--nav-color);
+        background-color: whitesmoke;
+      }
+      .displayBlock #pole {
+        position: absolute;
+        display: inline-block;
+        width: 4px;
+        height: 100%;
+        left: 11%;
+        background-color: rgba(65, 60, 60, 0.422);
+      }
+
+     .fadeIn,.fadeOut {
+    all: unset;
+    position: absolute;
+    width: 66%;
+    height: 10%;
+    border-radius: 20px;
+    padding: 0% 4%;
+    font-weight: 400;
+    font-size: 0.9rem;
+    left: 6%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.fadeIn {
+    animation: fadesInSearch 0.6s ease-in forwards;
+}
+
+.fadeOut {
+    animation: fadesOutSearch 0.6s ease-in forwards;
+}
+
+@keyframes fadesInSearch {
+    0% {
+        opacity: 0;
+        transform: translateX(14px);
+        background-color: rgba(255, 255, 255, 0);
+    }
+    50% {
+        opacity: 0.5;
+        transform: translateX(7px);
+        background-color: rgba(255, 255, 255, 0.5);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0px);
+        background-color: white;
+    }
+}
+
+@keyframes fadesOutSearch {
+    0% {
+        opacity: 1;
+        transform: translateX(0px);
+        background-color: white;
+    }
+    50% {
+        opacity: 0.5;
+        transform: translateX(7px);
+        background-color: rgba(255, 255, 255, 0.5);
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(14px);
+        background-color: rgba(255, 255, 255, 0);
+    }
+}
+
+      #searchBar[type="search"]::-webkit-search-cancel-button {
+        -webkit-appearance: none;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="ContentBox">
+        <div class="hiddenNav">
+          <p>
+            <span class="material-symbols-outlined"> dashboard </span>Dashboard
+          </p>
+          <p>
+            <span class="material-symbols-outlined"> account_circle </span
+            >Profile
+          </p>
+          <p>
+            <span class="material-symbols-outlined"> notifications </span
+            >Notifications
+          </p>
+          <p><span class="material-symbols-outlined"> chat </span>Messages</p>
+          <p>
+            <span class="material-symbols-outlined"> settings </span>Settings
+          </p>
+        </div>
+        <div class="displayBlock">
+          <div class="navigation">
+            <div class="toggle">
+              <span></span>
+              <span></span>
+            </div>
+            <p>Notifications</p>
+            <span class="material-symbols-outlined search" id="SearchButton">
+              search
+            </span>
+          </div>
+          <span id="pole"></span>
+          <div class="textMessage message2">
+            <p class="time">9:24 AM</p>
+            <p class="text"><b>John Walker </b>posted a photo on your wall.</p>
+          </div>
+          <div class="textMessage message3">
+            <p class="time">8:19 AM</p>
+            <p class="text"><b>Alice Parker </b>commented your last post.</p>
+          </div>
+          <div class="textMessage message1">
+            <p class="time">Yesterday</p>
+            <p class="text"><b>Luke Wayne </b>added you as friend.</p>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script>
+      let toggleButton = document.querySelector(".toggle");
+      toggleButton.addEventListener("click", (e) => {
+        let hiddenNav = document.querySelector(".hiddenNav");
+        let displayBlock = document.querySelector(".displayBlock");
+
+        if (
+          !displayBlock.classList.contains("Animate_1") &&
+          !hiddenNav.classList.contains("Animate_2")
+        ) {
+          displayBlock.classList.remove("outDisplay");
+          displayBlock.classList.add("Animate_1");
+          hiddenNav.classList.remove("outNav");
+          hiddenNav.classList.add("Animate_2");
+        } else {
+          displayBlock.classList.remove("Animate_1");
+          displayBlock.classList.add("outDisplay");
+          hiddenNav.classList.remove("Animate_2");
+          hiddenNav.classList.add("outNav");
+        }
+      });
+
+      let searchButton = document.querySelector("#SearchButton");
+searchButton.addEventListener("click", () => {
+    let parentElement = searchButton.parentElement;
+    let inputSearch = parentElement.querySelector("#searchBar");
+
+    if (!inputSearch) {
+        inputSearch = document.createElement("input");
+        inputSearch.type = "search";
+        inputSearch.placeholder = "Search...";
+        inputSearch.id = "searchBar";
+        inputSearch.classList.add("fadeIn"); 
+        parentElement.appendChild(inputSearch);
+    } else {
+        inputSearch.classList.toggle("fadeIn");
+        inputSearch.classList.toggle("fadeOut");
+    }
+});
+    </script>
+  </body>
+</html>
