@@ -231,6 +231,7 @@
         flex-direction: column;
         justify-content: center;
         animation: fadeUp 0.6s ease-in forwards;
+        animation-delay: var(--delay);
       }
       .textMessage :is(.time, .text) {
         position: relative;
@@ -418,6 +419,10 @@ searchButton.addEventListener("click", () => {
         inputSearch.classList.toggle("fadeOut");
     }
 });
+
+      document.querySelectorAll(".textMessage").forEach((element, index)=>(){
+        element.style.setProperty('--delay',`${index*0.4}s`);
+      });
     </script>
   </body>
 </html>
