@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Day 9</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap");
+
+      .contentBlock {
+        position: absolute;
+        width: 400px;
+        height: 400px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        flex-direction: column;
+        border-radius: 4px;
+        box-shadow: 0px 2px 5px rgb(0, 0, 0, 0.3);
+
+        overflow: hidden;
+      }
+      .animationBlock {
+        width: 100%;
+        height: 80%;
+        background-color: #1a2238;
+      }
+      .weatherBlocK {
+        width: 100%;
+        height: 20%;
+        background-color: white;
+        display: flex;
+        font-family: "Roboto Flex", sans-serif;
+      }
+      .weatherBlocK div:first-of-type {
+        display: flex;
+        width: 60%;
+        height: 100%;
+        justify-content: space-evenly;
+        align-items: center;
+      }
+      .weatherBlocK div:first-of-type p span {
+        display: block;
+        font-size: 1rem;
+        font-weight: 100;
+      }
+      .weatherBlocK > div:first-child > span:first-child {
+        font-size: 3.5rem;
+        font-weight: 200;
+      }
+
+      .weatherBlocK > div:nth-child(2) > p span {
+        display: block;
+        font-size: 0.9rem;
+        position: relative;
+        top: 25%;
+        left: 50%;
+        text-align: right;
+        font-weight: 200;
+      }
+      .weatherBlocK > div:nth-child(2) > span > b {
+        margin-left: 5px;
+      }
+
+      .ground {
+        position: relative;
+        width: 100%;
+        height: 40%;
+        top: 60%;
+        overflow: hidden;
+      }
+
+      .ground_1 > div {
+        height: 55px;
+        border-radius: 50%;
+        z-index: 1;
+      }
+      .ground_2 > div {
+        height: 85px;
+        border-radius: 50%;
+        z-index: 2;
+      }
+      .ground_1 .g1 {
+        width: 280px;
+        height: 250px;
+        left: -30px;
+        position: absolute;
+        background-color: #26314f;
+      }
+      .ground_1 .g2 {
+        width: 280px;
+        height: 250px;
+        right: -50px;
+        position: absolute;
+        background-color: #26314f;
+      }
+      .ground_2 .bg1 {
+        width: 40%;
+        height: 95px;
+        transform: rotate(13deg);
+        position: absolute;
+        left: -23px;
+        top: 50%;
+        background-color: #303c5d;
+      }
+      .ground_2 .bg2 {
+        width: 300px;
+        height: 250px;
+        position: absolute;
+        background-color: #303c5d;
+        top: 22%;
+        left: 15%;
+      }
+      .ground_2 .bg3 {
+        width: 150px;
+        height: 100px;
+        position: absolute;
+        background-color: #303c5d;
+        top: 50%;
+        left: 75%;
+        transform: rotate(-10deg);
+      }
+
+      .moon {
+        width: 70px;
+        height: 70px;
+        position: absolute;
+        border-radius: 50%;
+        background-color: rgb(239, 239, 181);
+        top: 12%;
+        left: 15%;
+        box-shadow: 0 0 10px 0 #f6edbd;
+        animation: moon 1.2s ease-in forwards;
+        overflow: hidden;
+      }
+      @keyframes moon {
+        0% {
+          transform: translate(-20px, 200px);
+        }
+        100% {
+          transform: translate(0px, 0px);
+        }
+      }
+
+      .moon > .crater {
+        position: absolute;
+        width: 11px;
+        height: 11px;
+        border-radius: 10px;
+        background: #ece1a8;
+      }
+
+      .crater-1 {
+        top: 9px;
+        left: 28px;
+      }
+
+      .crater-2 {
+        top: 12px;
+        left: 0;
+      }
+
+      .crater-3 {
+        top: 56px;
+        left: 10px;
+      }
+
+      .crater-4 {
+        width: 6px !important;
+        height: 6px !important;
+        top: 37px;
+        left: 49px;
+      }
+
+      .crater-5 {
+        width: 6px !important;
+        height: 6px !important;
+        top: 24px;
+        left: 61px;
+      }
+
+      .crater-6 {
+        width: 6px !important;
+        height: 6px !important;
+        top: 55px;
+        left: 33px;
+      }
+
+      .crater-7 {
+        width: 6px !important;
+        height: 6px !important;
+        top: 17px;
+        left: 46px;
+      }
+
+      .crater-8 {
+        width: 6px !important;
+        height: 6px !important;
+        top: 28px;
+        left: 27px;
+      }
+
+      .crater-9 {
+        width: 6px !important;
+        height: 6px !important;
+        top: 39px;
+        left: 17px;
+      }
+
+      .crater-10 {
+        width: 4px !important;
+        height: 4px !important;
+        top: 25px;
+        left: 15px;
+      }
+      .crater-11 {
+        width: 4px !important;
+        height: 4px !important;
+        top: 37px;
+        left: 37px;
+      }
+      .rainDrop {
+        width: 100%;
+        position: absolute;
+        height: 70%;
+      }
+
+      .drop-big,
+      .drop-medium,
+      .drop-small {
+        position: absolute;
+        z-index: 20;
+        border-radius: 50%;
+        background: #7fc1f9;
+        animation: droplet linear infinite; /* Corrected */
+        animation-fill-mode: both;
+        transform-origin: 100% 100%;
+        top: -12px;
+      }
+
+      .drop-big {
+        width: 10px;
+        height: 10px;
+      }
+
+      .drop-big::before {
+        position: absolute;
+        content: "";
+        display: block;
+        top: -2px;
+        left: 1px;
+        width: 6px;
+        height: 6px;
+        background: #7fc1f9;
+        border-radius: 3px;
+      }
+
+      .drop-big::after {
+        position: absolute;
+        content: "";
+        display: block;
+        top: -5px;
+        left: 2px;
+        width: 4px;
+        height: 10px;
+        background: #7fc1f9;
+        border-radius: 50%;
+      }
+
+      .drop-medium {
+        width: 8px;
+        height: 8px;
+        opacity: 0.6;
+        animation-duration: 1.3s;
+      }
+
+      .drop-medium::before {
+        top: -2px;
+        left: 1px;
+        width: 4px;
+        height: 4px;
+      }
+
+      .drop-medium::after {
+        top: -4px;
+        left: 2px;
+        width: 2px;
+        height: 6px;
+      }
+
+      .drop-small {
+        width: 6px;
+        height: 6px;
+        opacity: 0.3;
+        animation-duration: 1.9s;
+      }
+
+      .drop-small::before {
+        top: -2px;
+        left: 1px;
+        width: 2px;
+        height: 2px;
+      }
+
+      .drop-small::after {
+        top: -3px;
+        left: 1px;
+        width: 2px;
+        height: 4px;
+      }
+
+      @keyframes droplet {
+        0% {
+          transform: translate3d(0, 0, 0) scaleX(1) scaleY(1) rotate(17deg);
+        }
+        85% {
+          transform: translate3d(0px, 320px, 0) scaleX(1) scaleY(1)
+            rotate(17deg); /* Move both horizontally and vertically */
+        }
+        100% {
+          transform: translate3d(0px, 320px, 0) scaleX(3) scaleY(0) rotate(0deg); /* Final position should be more diagonal */
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="contentBlock">
+        <div class="animationBlock">
+          <div class="rainDrop"></div>
+          <div class="moon">
+            <div class="crater crater-1"></div>
+            <div class="crater crater-2"></div>
+            <div class="crater crater-3"></div>
+            <div class="crater crater-4"></div>
+            <div class="crater crater-5"></div>
+            <div class="crater crater-6"></div>
+            <div class="crater crater-7"></div>
+            <div class="crater crater-8"></div>
+            <div class="crater crater-9"></div>
+            <div class="crater crater-10"></div>
+            <div class="crater crater-11"></div>
+          </div>
+          <div class="ground">
+            <div class="ground_1">
+              <div class="g1"></div>
+              <div class="g2"></div>
+            </div>
+            <div class="ground_2">
+              <div class="bg1"></div>
+              <div class="bg2"></div>
+              <div class="bg3"></div>
+            </div>
+          </div>
+        </div>
+        <div class="weatherBlocK">
+          <div>
+            <span>12°</span>
+            <p>
+              <span>Wind: E 7 km/h</span>
+              <span>Humidity: 87%</span>
+            </p>
+          </div>
+          <div>
+            <p>
+              <span>Tue <b>21° / 9°</b></span>
+              <span>Wed <b>23° / 10°</b></span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script>
+      let animationBlock = document.querySelector(".animationBlock");
+      let rainDrop = document.querySelector(".rainDrop");
+
+      const position = [];
+
+      for (let i = 1; i <= 30; i++) {
+        let RandomX = Math.floor(Math.random() * animationBlock.clientWidth);
+        let duration = Math.random() * (1.5 - 1) + 1;
+        let delay = Math.random() * (4 - 1) + 1;
+
+        let sizeName;
+        if (Math.random() > 0.66) {
+          sizeName = "drop-big";
+        } else if (Math.random() > 0.33) {
+          sizeName = "drop-medium";
+        } else {
+          sizeName = "drop-small";
+        }
+        position.push({
+          x: RandomX,
+          animation: duration,
+          animationDelay: delay,
+          sizeName,
+        });
+      }
+
+      position.forEach((pos) => {
+        let droplet = document.createElement("div");
+        droplet.className = `${pos.sizeName}`;
+        droplet.style.left = `${pos.x}px`;
+        droplet.style.animation = `droplet ${pos.animation}s linear ${pos.animationDelay}s infinite `;
+        rainDrop.append(droplet);
+      });
+    </script>
+  </body>
+</html>
