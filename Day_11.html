@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Day 11</title>
+    <style>
+      .frame {
+        width: 400px;
+        height: 400px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        background: rgb(246, 232, 215);
+        background: radial-gradient(
+          ellipse at center,
+          rgba(246, 232, 215, 1) 0%,
+          rgba(218, 190, 155, 1) 100%
+        );
+        overflow: hidden;
+      }
+      .screen {
+        width: 100%;
+        height: 60%;
+        background: none;
+      }
+      .ground {
+        width: 100%;
+        height: 40%;
+        background-color: #232323;
+      }
+
+      .invi-1,
+      .invi-2 {
+        width: 151px;
+        height: 245px;
+        position: absolute;
+        bottom: 43%;
+        transform-origin: 50% 0;
+      }
+      .invi-1 {
+        left: 120px;
+        animation: leg-swing 2s ease-in-out infinite;
+      }
+      .invi-2 {
+        left: 180px;
+        animation: leg-swing 2s ease-in-out 1s infinite;
+      }
+      .shoe-1,
+      .shoe-2 {
+        width: 151px;
+        height: 128px;
+        background: url("https://100dayscss.com/codepen/doc-martens.svg")
+          no-repeat;
+        background-size: contain;
+        position: absolute;
+        bottom: 0;
+        transform-origin: 0 95%;
+        animation: shoemove 2s linear infinite;
+      }
+      .shoe-1 {
+        animation-delay: 1s;
+      }
+
+      @keyframes leg-swing {
+        0%, 100% {
+          transform: rotate(-22deg);
+        }
+        50% {
+          transform: rotate(40deg);
+        }
+      }
+
+      @keyframes shoemove {
+        0%, 50% {
+          transform: translate3d(0, 0, 0) rotate(-14deg);
+        }
+        50%, 100% {
+          transform: translate3d(0, 0, 0) rotate(14deg);
+        }
+      }
+      
+      </style>
+  </head>
+  <body>
+    <main>
+      <div class="frame">
+        <div class="screen">
+          <div class="invi-1"><div class="shoe-1"></div></div>
+
+          <div class="invi-2"><div class="shoe-2"></div></div>
+        </div>
+        <div class="ground"></div>
+      </div>
+    </main>
+  </body>
+</html>
